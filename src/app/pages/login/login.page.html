@@ -1,0 +1,75 @@
+<ion-content class="login-content" [fullscreen]="true">
+  <!-- Sage green background -->
+  <div class="sage-bg" aria-hidden="true"></div>
+
+  <div class="center-wrap">
+    <div class="card">
+      <!-- App Logo -->
+      <div class="logo-container">
+        <img src="assets/images/AppLogo.png" alt="App Logo" class="appLogo" />
+      </div>
+
+      <!-- Login Form -->
+      <form (ngSubmit)="onLogin($event)" class="form-container" novalidate>
+        <ion-item class="field" lines="none">
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            [(ngModel)]="email"
+            name="email"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="field" lines="none">
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input
+            type="password"
+            autocomplete="current-password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            minlength="6">
+          </ion-input>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          type="submit"
+          shape="round"
+          [disabled]="!email || !password"
+          class="login-button">
+          Log In
+        </ion-button>
+      </form>
+
+      <!-- Error -->
+      <ion-text color="danger" class="error" *ngIf="error">{{ error }}</ion-text>
+
+      <!-- Social Login -->
+      <div class="social-login">
+        <p class="divider">or continue with</p>
+        <div class="social-buttons">
+          <ion-button fill="clear" class="social-button google" disabled title="Not configured">
+            <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" class="social-button facebook" disabled title="Not configured">
+            <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="isIOS" fill="clear" class="social-button apple" disabled title="Not configured">
+            <ion-icon slot="icon-only" name="logo-apple"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- Create account (centered) -->
+      <div class="create-wrap">
+        <ion-button fill="clear" size="small" (click)="onCreate($event)" class="create-account">
+          Create account
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

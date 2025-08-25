@@ -1,0 +1,303 @@
+/* ---------------- Brand palette ---------------- */
+:host {
+  --sage-0: #e6ede1;
+  --sage-1: #d8e3d0;
+  --sage-2: #c8d6bf;
+  --sage-3: #b9ccb3;
+
+  --pink: #ffd6e7;
+  --burgundy: #7a1222;
+}
+
+/* ─── Remove the header shadow/hairline that overlaps the temp ────────── */
+:host ::ng-deep ion-header,
+:host ::ng-deep ion-toolbar {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  --box-shadow: none !important;
+  --border-width: 0 !important;
+  border: 0 !important;
+}
+:host ::ng-deep ion-header::after,
+:host ::ng-deep ion-toolbar::after {
+  content: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+/* Just in case any content overlay gradient is present */
+:host ::ng-deep ion-content::before,
+:host ::ng-deep ion-content::after {
+  content: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* ---------------- Header ---------------- */
+.header {
+  ion-toolbar {
+    --background: transparent;
+    --border-width: 0;
+    --box-shadow: none;
+    padding-top: env(safe-area-inset-top, 20px);
+
+    ion-buttons {
+      ion-icon { font-size: 24px; }
+      ion-label {
+        margin-left: 8px;
+        font-weight: 500;
+        font-family: 'Belanosima', sans-serif;
+
+        .current-location {
+          font-size: 1.2rem;
+          color: var(--ion-text-color, #f0f0f0) !important;
+        }
+      }
+    }
+
+    .close-icon { font-size: 28px; }
+  }
+}
+
+/* ---------------- Sage-green page background ---------------- */
+ion-content {
+  --background: linear-gradient(
+    180deg,
+    var(--sage-0) 0%,
+    var(--sage-1) 35%,
+    var(--sage-2) 65%,
+    var(--sage-3) 100%
+  );
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 0;
+}
+
+/* ---------------- Current weather ---------------- */
+.current-weather {
+  margin-top: 2em;
+  text-align: center;
+
+  .current-temp {
+    font-size: 3.5rem;
+    font-weight: 600;
+    font-family: 'Belanosima', sans-serif;
+    color: var(--ion-text-color, #2c2c2c) !important;
+    display: block;
+    line-height: 1;
+  }
+
+  .current-condition {
+    font-size: 1.1rem;
+    color: var(--ion-color-medium, #555) !important;
+    text-transform: capitalize;
+  }
+}
+
+/* ---------------- Section title ---------------- */
+.section-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  display: block;
+  color: var(--burgundy);
+  font-family: 'Belanosima', sans-serif;
+}
+
+/* ---------------- Pink panels (Hourly + 10-Day) ---------------- */
+.forecast-panel {
+  margin-top: 1.5em;
+  background: var(--pink);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  color: #2a1c22;
+}
+
+/* ---------------- Hourly forecast ---------------- */
+.hourly-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 8px 0;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.hour-item {
+  flex: 0 0 auto;
+  text-align: center;
+  min-width: 60px;
+
+  p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    color: #2a1c22;
+    &:first-child { font-weight: 500; }
+    &:last-child  { font-weight: 600; }
+  }
+
+  ion-icon {
+    font-size: 28px;
+    color: var(--ion-color-primary, #F9B858);
+    margin: 4px 0;
+  }
+
+  .leaflet-map {
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    z-index: 0;
+  }
+  .map-wrapper.fullscreen .leaflet-map { height: 100vh; }
+}
+
+/* ---------------- 10-Day forecast rows ---------------- */
+.day-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(42, 28, 34, 0.12);
+
+  &:last-child { border-bottom: none; }
+
+  .day-date { flex: 1.5; font-weight: 500; color: #2a1c22; }
+  ion-icon   { flex: .5; font-size: 24px; color: var(--ion-color-primary, #F9B858); text-align: center; }
+  .temp-range{ flex: 1; text-align: center; font-weight: 500; color: #2a1c22; }
+  .condition { flex: 1; text-align: right; color: #5b5b5b; text-transform: capitalize; }
+}
+
+/* ---------------- Pink CTA (Show/Hide Maps) ---------------- */
+.maps-cta,
+.map-toggle {
+  --background: var(--pink);
+  --background-activated: #ffcfe1;
+  --background-focused: #ffcfe1;
+  --border-color: transparent;
+  --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --border-radius: 14px;
+
+  background: var(--pink);
+  color: var(--burgundy);
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: .2px;
+}
+
+/* ---------------- Weather maps (now PINK) ---------------- */
+.weather-maps {
+  margin-top: 1em;
+  background: var(--pink);            /* pink container */
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+/* Segment defaults (generic) */
+ion-segment {
+  ion-segment-button {
+    --color: var(--ion-color-medium);
+    --color-checked: var(--ion-color-primary);
+    --indicator-color: var(--ion-color-primary);
+    ion-icon { margin-right: 4px; }
+    ion-label { font-size: 0.8em; }
+  }
+}
+
+/* Segment — make highlight BURGUNDY (not yellow) in the maps area */
+.weather-maps ion-segment {
+  --background: transparent;
+}
+.weather-maps ion-segment ion-segment-button {
+  --color: rgba(42, 28, 34, 0.6);     /* unselected */
+  --color-checked: var(--burgundy);   /* selected text/icon */
+  --indicator-color: var(--burgundy); /* underline/indicator */
+}
+/* extra safety for some Ionic builds */
+.weather-maps ion-segment-button::part(indicator) {
+  background: var(--burgundy);
+}
+
+/* Map frame */
+.map-wrapper {
+  position: relative;
+  height: 300px;
+  margin-top: 1em;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--ion-color-light-shade);
+
+  &.fullscreen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    height: 100%; width: 100%;
+    z-index: 1000;
+    border-radius: 0;
+  }
+}
+
+.map-container { width: 100%; height: 100%; position: relative; touch-action: none; }
+.map-image     { width: 100%; height: 100%; object-fit: cover; }
+
+/* Marker */
+.location-marker {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
+  .marker-icon {
+    font-size: 24px;
+    color: var(--ion-color-danger);
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+  }
+}
+
+/* Controls — set icons/buttons to burgundy */
+.map-controls {
+  position: absolute;
+  bottom: 16px; right: 16px;
+  display: flex; flex-direction: column;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  padding: 4px;
+
+  .control-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    color: var(--burgundy);
+    --color: var(--burgundy);
+  }
+}
+
+.map-note {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.8em;
+  color: var(--ion-color-medium);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 400px) {
+  .current-weather .current-temp { font-size: 3rem; }
+  .day-item { font-size: 0.9rem; }
+  .day-item ion-icon { font-size: 20px; }
+}
+
+/* Keep text readable in light mode */
+@media (prefers-color-scheme: light) {
+  :host {
+    ion-label, ion-text, p, h1, h2, h3, h4, span, div,
+    .current-temp, .day-date, .temp-range, .condition {
+      color: #2c2c2c !important;
+    }
+  }
+}

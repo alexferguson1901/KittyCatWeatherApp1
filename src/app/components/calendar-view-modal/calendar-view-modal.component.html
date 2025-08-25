@@ -1,0 +1,64 @@
+<!-- src/app/components/calendar-view-modal/calendar-view-modal.component.html -->
+<ion-header>
+  <ion-toolbar class="pink-toolbar">
+    <ion-title>Calendar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="dismiss()">
+        <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="cal-content" [fullscreen]="true">
+  <div class="sage-bg" aria-hidden="true"></div>
+
+  <div class="card">
+    <!-- Month header -->
+    <div class="month-bar">
+      <ion-button fill="clear" (click)="prevMonth()" [disabled]="!canPrev()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+
+      <div class="month-title">{{ monthLabel() }}</div>
+
+      <ion-button fill="clear" (click)="nextMonth()" [disabled]="!canNext()">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Weekday headings -->
+    <div class="grid header">
+      <div *ngFor="let w of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']">{{ w }}</div>
+    </div>
+
+    <!-- Days -->
+    <div class="grid body">
+      <button
+        *ngFor="let c of monthCells"
+        class="cell"
+        [class.muted]="!c.inMonth"
+        [class.today]="c.isToday"
+        [class.selected]="c.isSelected"
+        (click)="selectCell(c)"
+      >
+        <span class="num">{{ c.d }}</span>
+        <span class="dot" *ngIf="c.hasEvent"></span>
+      </button>
+    </div>
+
+    <!-- Selected day’s plan -->
+    <div class="details" *ngIf="selectedDate">
+      <div class="details-head">
+        <div class="date">{{ selectedDate }}</div>
+        <ion-button fill="clear" color="danger" (click)="deleteSelected()" [disabled]="!selectedNote">
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+          Delete
+        </ion-button>
+      </div>
+      <div class="note" [class.empty]="!selectedNote">
+        {{ selectedNote || 'No plan saved for this date.' }}
+      </div>
+    </div>
+  </div>
+</ion-content>

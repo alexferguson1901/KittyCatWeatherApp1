@@ -1,0 +1,172 @@
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Dark Mode */
+@import "@ionic/angular/css/palettes/dark.always.css";
+@import "@ionic/angular/css/palettes/dark.class.css";
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@600&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Global CSS Variables */
+:root {
+
+  /* global.scss */
+  ion-input,
+  ion-datetime,
+  ion-range {
+    --color: var(--ion-text-color) !important;
+    --placeholder-color: var(--ion-color-medium) !important;
+  }
+
+  /* Light Theme */
+  --ion-background-color: #fcf4e8;
+  --ion-background-color-rgb: 252,
+  244,
+  232;
+  --ion-text-color-rgb: 44,
+  44,
+  44;
+  --ion-text-color: #2c2c2c;
+
+  /* filepath: /workspaces/KittyCatApp/src/global.scss */
+  /* Custom Colors */
+  --ion-color-primary: #F9B858;
+  --ion-color-primary-rgb: 249,
+  184,
+  88;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255,
+  255,
+  255;
+  --ion-color-primary-shade: #dea650;
+  --ion-color-primary-tint: #fac06a;
+
+  --ion-color-secondary: #41A2C2;
+  --ion-color-secondary-rgb: 65,
+  162,
+  194;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255,
+  255,
+  255;
+  --ion-color-secondary-shade: #398fb0;
+  --ion-color-secondary-tint: #59aec9;
+
+  .white-text {
+    color: #ffffff !important;
+  }
+
+
+  --ion-color-medium: #92949c;
+  /* Ensure medium color is defined */
+  --ion-color-medium-rgb: 146,
+  148,
+  156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255,
+  255,
+  255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #a2a4ab;
+
+  --ion-color-tertiary: #FFFCE3;
+  --ion-color-tertiary-rgb: 255,
+  252,
+  227;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0,
+  0,
+  0;
+  --ion-color-tertiary-shade: #e0dfc8;
+  --ion-color-tertiary-tint: #fffde9;
+
+  /* Component Variables */
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --input-bg: #ffffff;
+  --range-bar: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme */
+    --ion-background-color: #121212;
+    --ion-background-color-rgb: 18, 18, 18;
+    --ion-text-color: #ffffff;
+    --ion-text-color-rgb: 255, 255, 255;
+
+    /* Custom Colors */
+    --ion-color-primary: #FF974D;
+    --ion-color-secondary: #A4D7ED;
+    --ion-color-tertiary: #FFD7A8;
+
+    /* Component Variables */
+    --card-bg: #1e1e1e;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --input-bg: #2a2a2a;
+    --range-bar: #333333;
+  }
+}
+
+/* Base Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+ion-text {
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+ion-button {
+  font-weight: 600;
+  font-family: 'Belanosima', sans-serif;
+}
+
+/* Header Styles */
+ion-header {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+
+  ion-toolbar {
+    --background: transparent;
+    --border-width: 0;
+    --box-shadow: none;
+    padding-top: env(safe-area-inset-top, 20px);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Content Styles */
+ion-content {
+  --background: var(--ion-background-color);
+  padding-left: 16px;
+  padding-right: 16px;
+
+  &.translucent {
+    --background: transparent;
+    background: transparent;
+  }
+}
+
+/* Utility Classes */
+.main-content {
+  margin-left: 2em;
+}

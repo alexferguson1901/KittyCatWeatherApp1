@@ -1,0 +1,77 @@
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="location-outline"></ion-icon>
+      <ion-label>{{ location }}</ion-label>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon name="close" (click)="dismiss()" class="close-icon"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Current Weather -->
+  <div class="current-weather">
+    <ion-text class="current-temp">{{ weatherData.current.main.temp }}°</ion-text>
+    <ion-text class="current-condition">{{ weatherData.current.weather[0].description }}</ion-text>
+  </div>
+
+  <!-- Hourly Forecast (pink panel) -->
+  <div class="forecast-panel">
+    <ion-text class="section-title">Hourly Today</ion-text>
+    <div class="hourly-scroll">
+      <div class="hour-item" *ngFor="let hour of hourlyForecast">
+        <p>{{ hour.time }}</p>
+        <ion-icon [name]="hour.icon"></ion-icon>
+        <p>{{ hour.temp }}°</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10-Day Forecast (pink panel) -->
+  <div class="forecast-panel">
+    <ion-text class="section-title">10-Day Forecast</ion-text>
+    <div class="day-item" *ngFor="let day of dailyForecast">
+      <div class="day-date">{{ day.date }}</div>
+      <ion-icon [name]="day.icon"></ion-icon>
+      <div class="temp-range">{{ day.tempMin }}° – {{ day.tempMax }}°</div>
+      <div class="condition">{{ day.condition }}</div>
+    </div>
+  </div>
+
+  <!-- Pink CTA -->
+  <ion-button expand="block" class="maps-cta" (click)="toggleMapView()">
+    {{ showMap ? 'Hide Weather Maps' : 'Show Interactive Maps' }}
+  </ion-button>
+
+  <!-- Weather Maps Section -->
+  <div class="weather-maps" *ngIf="showMap">
+    <ion-segment [value]="activeMapLayer" (ionChange)="changeMapLayer($event.detail.value?.toString())">
+      <ion-segment-button *ngFor="let layer of mapLayers" [value]="layer.id">
+        <ion-icon [name]="layer.icon"></ion-icon>
+        <ion-label>{{ layer.name }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div class="map-wrapper" [class.fullscreen]="isMapFullscreen">
+      <div #mapContainer class="leaflet-map"></div>
+
+      <div class="map-controls">
+        <ion-button (click)="zoomIn()" fill="clear" class="control-button">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+        <ion-button (click)="zoomOut()" fill="clear" class="control-button">
+          <ion-icon name="remove"></ion-icon>
+        </ion-button>
+        <ion-button (click)="toggleMapFullscreen()" fill="clear" class="control-button">
+          <ion-icon [name]="isMapFullscreen ? 'contract' : 'expand'"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <ion-note class="map-note">
+      Tap and drag to pan, use buttons to zoom
+    </ion-note>
+  </div>
+</ion-content>

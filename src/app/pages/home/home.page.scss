@@ -1,0 +1,234 @@
+/* =========================================
+   Variables (light/dark helpers)
+========================================= */
+:host {
+  --text-color-light: #ffffff;
+  --text-color-dark: #2c2c2c;
+  --panel-bg-light: #ffffff;
+  --panel-bg-dark: #1e1e1e;
+  --panel-shadow-light: 0 6px 18px rgba(0, 0, 0, 0.1);
+  --panel-shadow-dark: 0 6px 18px rgba(0, 0, 0, 0.3);
+  --avatar-border-light: rgba(255, 255, 255, 0.3);
+  --avatar-border-dark: rgba(0, 0, 0, 0.3);
+}
+
+ion-content {
+  --background: transparent; /* we paint our own background layer */
+  position: relative;
+}
+
+/* SAGE GREEN BACKGROUND LAYER */
+.sage-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* soft sage gradient */
+  background: linear-gradient(
+    180deg,
+    #e6ede1 0%,
+    #d8e3d0 35%,
+    #c8d6bf 65%,
+    #b9ccb3 100%
+  );
+}
+
+/* =========================================
+   Header
+========================================= */
+ion-header {
+  border: none;
+  box-shadow: none;
+
+  ion-toolbar {
+    --background: transparent;
+    --border-width: 0;
+    --padding-top: calc(env(safe-area-inset-top, 0) + 12px);
+    --padding-bottom: 6px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+
+    ion-buttons[slot="end"] {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+
+      .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--avatar-border);
+      }
+
+      .heart-button {
+        --padding-start: 0;
+        --padding-end: 0;
+        --ripple-color: transparent;
+
+        .heart-icon {
+          width: 40px;
+          height: 40px;
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+      }
+    }
+  }
+}
+
+/* =========================================
+   HERO
+========================================= */
+.hero {
+  position: relative;
+  z-index: 1; /* above background */
+  min-height: 55vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+/* LEFT column: Blackrock, time, degrees, summary */
+.hero-left {
+  position: absolute;
+  top: 12%;
+  left: 16px;
+  right: 50%; /* keeps it on the left side */
+  text-align: left;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.location {
+  font-weight: 700;
+  font-size: clamp(18px, 3vw, 28px);
+  letter-spacing: 0.2px;
+}
+
+.time {
+  opacity: 0.85;
+  margin-top: 0.25rem;
+  font-size: clamp(14px, 2.2vw, 18px);
+}
+
+.temp {
+  margin-top: 0.75rem;
+  font-weight: 800;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 1;
+}
+
+.summary {
+  margin-top: 0.25rem;
+  font-size: clamp(16px, 2.5vw, 20px);
+  opacity: 0.9;
+}
+
+/* CENTER: bigger cat */
+.cat-center {
+  z-index: 1;
+}
+
+.cat-center .animated-cat ion-img,
+.cat-center ion-img {
+  width: clamp(260px, 34vw, 420px);
+  height: clamp(260px, 34vw, 420px);
+  object-fit: contain;
+}
+
+/* =========================================
+   HOURLY PANEL (pink)
+========================================= */
+.hourly-panel {
+  position: relative;
+  z-index: 1;
+  margin: 1rem;
+  padding: 1rem 1rem 1.25rem;
+  border-radius: 24px;
+  background: #ffd6e7; /* pastel pink */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  color: #2a1c22;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.panel-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.hourly-scroll {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(64px, 1fr);
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.hour {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+}
+
+.h-time {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.h-temp {
+  font-weight: 600;
+}
+
+.hour ion-icon {
+  font-size: 22px;
+  opacity: 0.95;
+}
+
+/* =========================================
+   Dark / Light mode variable bindings
+========================================= */
+@media (prefers-color-scheme: dark) {
+  :host {
+    --text-color: var(--text-color-light);
+    --panel-bg: var(--panel-bg-dark);
+    --panel-shadow: var(--panel-shadow-dark);
+    --avatar-border: var(--avatar-border-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :host {
+    --text-color: var(--text-color-dark);
+    --panel-bg: var(--panel-bg-light);
+    --panel-shadow: var(--panel-shadow-light);
+    --avatar-border: var(--avatar-border-light);
+  }
+
+  p {
+    color: var(--text-color) !important;
+  }
+
+  .text-dark {
+    color: var(--text-color-dark) !important;
+  }
+}
+
+/* =========================================
+   Responsive tweaks
+========================================= */
+@media (max-width: 400px) {
+  .hourly-panel {
+    padding: 12px;
+  }
+}

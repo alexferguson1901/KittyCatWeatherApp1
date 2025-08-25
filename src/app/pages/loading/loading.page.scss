@@ -1,0 +1,62 @@
+/* src/app/pages/loading/loading.page.scss */
+
+/* Brand tokens */
+:host {
+  --sage-0: #e6ede1;
+  --sage-1: #d8e3d0;
+  --sage-2: #c8d6bf;
+  --sage-3: #b9ccb3;
+  --text:   #2a1c22;
+}
+
+/* Make the content transparent so our gradient shows */
+ion-content.loading-content {
+  --background: transparent;
+  position: relative;
+  min-height: 100%;
+}
+
+/* Full-viewport sage gradient */
+.sage-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    var(--sage-0) 0%,
+    var(--sage-1) 35%,
+    var(--sage-2) 65%,
+    var(--sage-3) 100%
+  );
+}
+
+/* Center everything */
+.center {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh; /* covers notch safely */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 16px) 16px
+           calc(env(safe-area-inset-bottom, 0px) + 16px);
+  color: var(--text);
+}
+
+/* Spinner & text styles */
+.spinner {
+  margin-bottom: 12px;
+  transform: scale(1.1);
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.2px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  opacity: 0.8;
+  font-size: 0.95rem;
+}

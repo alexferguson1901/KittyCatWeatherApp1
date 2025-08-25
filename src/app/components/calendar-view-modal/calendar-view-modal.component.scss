@@ -1,0 +1,110 @@
+/* src/app/components/calendar-view-modal/calendar-view-modal.component.scss */
+
+/* palette */
+$burgundy: #7a1222;
+$pink: #ffd6e7;
+
+.cal-content {
+  --background: transparent;
+  position: relative;
+  &::part(scroll) { min-height: 100vh; }
+}
+
+/* sage background */
+.sage-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, #e6ede1 0%, #d8e3d0 35%, #c8d6bf 65%, #b9ccb3 100%);
+}
+
+/* Pink header */
+.pink-toolbar {
+  --background: #ffd6e7;
+  --border-width: 0;
+  color: $burgundy;
+  ion-title { color: $burgundy; font-weight: 800; letter-spacing: .2px; }
+  ion-button, ion-icon { color: $burgundy; }
+}
+
+/* White calendar card */
+.card {
+  position: relative; z-index: 1;
+  max-width: 980px;
+  margin: 24px auto 32px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.08);
+  padding: 16px;
+  color: #2a1c22;
+}
+
+/* Month bar */
+.month-bar {
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  .month-title { text-align: center; font-weight: 800; letter-spacing: .2px; }
+  ion-button { --color: $burgundy; }
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+
+  &.header > div {
+    text-align: center;
+    font-weight: 700;
+    opacity: .7;
+  }
+}
+
+.body .cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform .08s ease;
+
+  .num { font-weight: 700; opacity: .85; }
+  .dot {
+    position: absolute; bottom: 6px; width: 6px; height: 6px;
+    border-radius: 999px; background: $burgundy;
+  }
+
+  &.muted { opacity: .45; }
+  &.today { box-shadow: inset 0 0 0 2px $burgundy; }
+  &.selected {
+    box-shadow: inset 0 0 0 2px $burgundy, 0 4px 10px rgba(0,0,0,.08);
+    .num { color: $burgundy; }
+  }
+
+  &:active { transform: scale(.98); }
+}
+
+/* Details panel */
+.details {
+  margin-top: 14px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding-top: 12px;
+
+  .details-head {
+    display: flex; align-items: center; justify-content: space-between;
+    .date { font-weight: 800; color: $burgundy; }
+    ion-button { --color: $burgundy; }
+  }
+
+  .note {
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .note.empty { opacity: .7; font-style: italic; }
+}

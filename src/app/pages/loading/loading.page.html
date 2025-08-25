@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Loading...</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- src/app/pages/loading/loading.page.html -->
+<ion-content class="loading-content" [fullscreen]="true">
+  <!-- Sage green background layer -->
+  <div class="sage-bg" aria-hidden="true"></div>
+
+  <!-- Centered content -->
+  <div class="center">
+    <ion-spinner name="crescent" class="spinner"></ion-spinner>
+    <div class="title">Loading…</div>
+    <div class="subtitle">Loading weather data…</div>
+  </div>
+</ion-content>

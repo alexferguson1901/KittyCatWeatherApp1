@@ -1,0 +1,152 @@
+/* src/app/components/calendar-setup-modal/calendar-setup-modal.component.scss */
+
+/* Brand palette */
+$burgundy: #7a1222;
+$pink:     #ffd6e7;
+$grey:     #6b6f76;   /* day numbers */
+$greyDim:  #b9c0c6;   /* disabled/out-of-month days */
+
+/* Modal bg control */
+:host { --ion-background-color: transparent; }
+.setup-content {
+  --background: transparent;
+  position: relative;
+  &::part(scroll) { min-height: 100vh; }
+}
+
+/* Full-viewport sage background */
+.sage-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg,#e6ede1 0%,#d8e3d0 35%,#c8d6bf 65%,#b9ccb3 100%);
+}
+
+/* Pink toolbar */
+.pink-toolbar {
+  --background: #ffd6e7;
+  --border-width: 0;
+  ion-title { color: $burgundy; font-weight: 800; letter-spacing: .2px; }
+  ion-button, ion-icon { color: $burgundy; }
+}
+
+/* Layout */
+.setup-container {
+  display: flex;
+  flex-direction: column;
+  width: min(920px, calc(100% - 40px));
+  margin: 28px auto 40px;
+  padding: 0 4px;
+  position: relative;
+  z-index: 1;
+}
+.header-image { text-align: center; margin: 6px 0 10px;
+  ion-img { width: 150px; height: 150px; margin: 0 auto; }
+}
+
+/* Card base */
+.card {
+  --background: #ffffff;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.08);
+  padding: 14px 14px 12px;
+  margin: 12px 0;
+  text-align: left;
+
+  ion-label { color: $burgundy; font-weight: 700; margin-bottom: 6px; }
+  ion-icon  { color: $burgundy; opacity: .95; font-size: 22px; }
+
+  --ion-item-background: #ffffff;
+  --background: #ffffff;
+}
+
+/* ===== ION-DATETIME: force WHITE and PINK selection ===== */
+.date-card ion-datetime {
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 12px;
+
+  /* Force light theme inside the shadow DOM */
+  --background: #ffffff;
+  --ion-background-color: #ffffff;
+  background: #ffffff;
+
+  /* text & steps */
+  --ion-text-color: #{$grey};
+  --ion-color-step-600: #{$grey};
+  --ion-color-step-500: #{$grey};
+
+  /* use pink as component primary to avoid yellow accents */
+  --ion-color-primary: #ffd6e7;
+  --ion-color-primary-contrast: #7a1222;
+}
+
+/* Some renderers need explicit part backgrounds */
+.date-card ion-datetime::part(content),
+.date-card ion-datetime::part(calendar),
+.date-card ion-datetime::part(monthyear),
+.date-card ion-datetime::part(time-body) {
+  background: #ffffff;
+}
+
+/* Day numbers */
+.date-card ion-datetime::part(calendar-day) { color: $grey; }
+
+/* Disabled / out-of-month */
+.date-card ion-datetime::part(calendar-day-disabled) {
+  color: $greyDim;
+  opacity: 1;
+}
+
+/* Make the pill circular */
+.date-card ion-datetime::part(calendar-day-inner) { border-radius: 999px; }
+
+/* Selected day — pink circle with burgundy text */
+.date-card ion-datetime::part(calendar-day-active) {
+  background: $pink;
+  color: $burgundy;
+}
+
+/* Weekday headers */
+.date-card ion-datetime::part(weekday) { color: $grey; }
+
+/* Note card */
+.note-card ion-textarea {
+  width: 100%;
+  margin-top: 6px;
+  --background: #fff;
+  --color: #2a1c22;
+  border-radius: 12px;
+}
+
+/* Buttons */
+.actions { display: grid; gap: 12px; margin-top: 18px; }
+
+.pink-button {
+  --background: #ffd6e7;
+  --background-activated: #ffcfe1;
+  --background-hover: #ffcee1;
+  --border-radius: 32px;
+  --box-shadow: 0 10px 26px rgba(0,0,0,.10);
+  color: $burgundy;
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: .2px;
+}
+
+.pink-chip {
+  align-self: center;
+  color: $burgundy;
+  background: #ffd6e7;
+  border-radius: 999px;
+  padding: 6px 16px;
+  text-transform: none;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+}
+
+/* Compact height tweak */
+@media (max-height: 700px) {
+  .header-image ion-img { width: 120px; height: 120px; }
+}

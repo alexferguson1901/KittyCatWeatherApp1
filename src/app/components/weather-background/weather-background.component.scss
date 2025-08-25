@@ -1,0 +1,40 @@
+.weather-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .thunderstorm-background {
+    background: linear-gradient(to bottom, #4a4a4a, #000000);
+  }
+  
+  .drizzle-background {
+    background: linear-gradient(to bottom, #a4a4a4, #d3d3d3);
+  }
+  
+  .rain-background {
+    background: linear-gradient(to bottom, #4a90e2, #000000);
+  }
+  
+  .snow-background {
+    background: linear-gradient(to bottom, #ffffff, #87ceeb);
+  }
+  
+  .atmosphere-background {
+    background: linear-gradient(to bottom, #b0c4de, #708090);
+  }
+  
+  .clear-sky-background {
+    background: linear-gradient(to bottom, #87ceeb, #ffffff);
+  }
+  
+  .cloudy-background {
+    background: linear-gradient(to bottom, #d3d3d3, #808080);
+  }
+  
+  .default-background {
+    background: linear-gradient(to bottom, #87ceeb, #ffffff);
+  }

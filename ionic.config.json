@@ -1,0 +1,7 @@
+{
+  "name": "KittyCatApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

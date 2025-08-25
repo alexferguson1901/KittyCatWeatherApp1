@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- Right-side buttons: Settings avatar + Calendar (heart) -->
+    <ion-buttons slot="end">
+      <ion-avatar (click)="openSettings()" class="avatar">
+        <img src="assets/images/Avatar.png" alt="User Avatar" />
+      </ion-avatar>
+
+      <!--  opens the planner calendar -->
+      <ion-button fill="clear" (click)="openPlannerCalendar()" class="heart-button">
+        <img src="assets/icon/Heart.png" alt="Calendar" class="heart-icon" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- SAGE GREEN BACKGROUND -->
+  <div class="sage-bg" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <!-- LEFT: location / time / temp / summary -->
+    <div class="hero-left">
+      <div class="location">{{ location }}</div>
+      <div class="time">{{ currentTime }}</div>
+      <div class="temp">
+        {{ currentWeather?.main?.temp | number:'1.0-0' }}°
+      </div>
+      <div class="summary">
+        {{ currentWeather?.weather?.[0]?.main || '—' }}
+      </div>
+    </div>
+
+    <!-- CENTER: big cat -->
+    <app-animated-cat
+      class="cat-center"
+      [weatherCondition]="currentWeather?.weather?.[0]?.main">
+    </app-animated-cat>
+  </div>
+
+  <!-- HOURLY PANEL (pink) -->
+  <div class="hourly-panel" (click)="openDetailedForecast()">
+    <div class="panel-title">Hourly Today</div>
+    <div class="hourly-scroll">
+      <div class="hour" *ngFor="let h of hourlyForecast">
+        <div class="h-time">{{ h.time }}</div>
+        <ion-icon [name]="h.icon"></ion-icon>
+        <div class="h-temp">{{ h.temp }}°</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

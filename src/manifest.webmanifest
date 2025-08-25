@@ -1,0 +1,20 @@
+{
+  "name": "Kitty Cat Weather App",
+  "short_name": "KittyCat",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "assets/icon/RoundLogo.png?v=3",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon/RoundLogo.png?v=3",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

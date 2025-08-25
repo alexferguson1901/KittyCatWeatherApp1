@@ -1,0 +1,167 @@
+/* ===================== Theme Vars ===================== */
+:host {
+  --burgundy: #7a1222;
+  --pink: #ffd6e7;
+
+  --sage-0: #e6ede1;
+  --sage-1: #d8e3d0;
+  --sage-2: #c8d6bf;
+  --sage-3: #b9ccb3;
+}
+
+/* ===================== Header ===================== */
+/* Make back chevron, title, etc. burgundy */
+ion-header {
+  border: none;
+  box-shadow: none;
+
+  ion-toolbar {
+    --background: transparent;
+    --border-width: 0;
+    --color: var(--burgundy);
+  }
+
+  ion-toolbar ion-button,
+  ion-toolbar ion-icon,
+  ion-toolbar ion-title {
+    color: var(--burgundy) !important;
+  }
+}
+
+/* ===================== Page Background ===================== */
+ion-content.settings-content {
+  --background: transparent; /* we draw our own layer */
+  position: relative;
+}
+
+/* Sage green gradient layer (fixed) */
+.sage-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    var(--sage-0) 0%,
+    var(--sage-1) 35%,
+    var(--sage-2) 65%,
+    var(--sage-3) 100%
+  );
+}
+
+/* ===================== Avatar ===================== */
+.settings-header {
+  display: grid;
+  place-items: center;
+  margin: 10px 0 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.settings-avatar {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+/* ===================== Pink Card ===================== */
+.settings-card {
+  position: relative;
+  z-index: 1;
+  width: min(920px, calc(100% - 48px));
+  margin: 0 auto 32px;
+  padding: 0;
+  border-radius: 22px;
+  background: var(--pink);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
+
+  /* ensure Ionic internals render over pink / transparent */
+  --ion-item-background: transparent;
+  --background: transparent;
+}
+
+/* ===================== List & Items ===================== */
+.settings-list {
+  margin: 0;
+  background: transparent;
+  --background: transparent;
+}
+
+/* Each item */
+.settings-list ion-item {
+  --background: transparent !important;
+  background: transparent !important;
+
+  --inner-padding-start: 12px;
+  --inner-padding-end: 12px;
+  --padding-start: 22px;
+  --min-height: 56px;
+
+  border-radius: 14px;
+  margin: 6px 8px;
+
+  font-size: 1.05rem;
+  color: var(--burgundy);
+
+  ion-label {
+    color: var(--burgundy);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  ion-icon {
+    color: var(--burgundy);
+    opacity: 0.85;
+    font-size: 18px;
+  }
+
+  .toggle-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  /* parts API: extra safety across themes */
+  &::part(native) {
+    background: transparent !important;
+  }
+}
+
+/* Make the chevron arrow on button rows burgundy */
+.settings-list ion-item[button] ion-icon {
+  color: var(--burgundy) !important;
+}
+
+/* ===================== Toggles (burgundy ON) ===================== */
+.burgundy-toggle {
+  /* Ionic vars */
+  --handle-background: #ffffff;
+  --handle-background-checked: #ffffff;
+  --track-background: rgba(122, 18, 34, 0.25);
+  --track-background-checked: var(--burgundy);
+  --ripple-color: rgba(122, 18, 34, 0.28);
+
+  /* parts fallback for older themes */
+  &::part(track) { background: rgba(122, 18, 34, 0.25); }
+  &.toggle-checked::part(track) { background: var(--burgundy); }
+  &::part(handle) { background: #ffffff; }
+  &.toggle-checked::part(handle) { background: #ffffff; }
+}
+
+/* ===================== Logout ===================== */
+.logout-item {
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  margin-top: 12px;
+}
+
+.logout-label {
+  color: var(--burgundy);
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: 0.2px;
+  font-size: 1.1rem;
+}

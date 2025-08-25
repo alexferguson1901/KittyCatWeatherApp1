@@ -1,0 +1,59 @@
+<!-- src/app/components/calendar-setup-modal/calendar-setup-modal.component.html -->
+<ion-header>
+  <ion-toolbar class="pink-toolbar">
+    <ion-title>Plan Your Days</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()" fill="clear">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="setup-content" [fullscreen]="true">
+  <div class="sage-bg" aria-hidden="true"></div>
+
+  <div class="setup-container">
+    <div class="header-image">
+      <ion-img src="assets/images/cycle-calendar.svg" alt="Calendar"></ion-img>
+    </div>
+
+    <!-- DATE -->
+    <ion-item class="card date-card" lines="none">
+      <ion-icon slot="start" name="calendar-clear-outline"></ion-icon>
+      <ion-label position="stacked">Choose a date</ion-label>
+
+      <ion-datetime
+        presentation="date"
+        [value]="selectedDate"
+        [max]="futureMaxISO"
+        (ionChange)="onDateChange($event)">
+      </ion-datetime>
+    </ion-item>
+
+    <!-- NOTE -->
+    <ion-item class="card note-card" lines="none">
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+      <ion-label position="stacked">Note…</ion-label>
+      <ion-textarea
+        autoGrow="true"
+        [counter]="true"
+        maxlength="500"
+        rows="4"
+        placeholder="What are you planning for this day?"
+        [(ngModel)]="note">
+      </ion-textarea>
+    </ion-item>
+
+    <div class="actions">
+      <ion-button expand="block" class="pink-button" (click)="save()">
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Save & Continue
+      </ion-button>
+
+      <ion-button fill="clear" class="pink-chip" (click)="cancel()">
+        Skip for Now
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

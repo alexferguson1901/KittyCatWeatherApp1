@@ -1,0 +1,13 @@
+.animated-cat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 160px;
+}
+
+ion-img {
+  width: clamp(260px, 34vw, 420px);  /* bigger */
+  height: clamp(260px, 34vw, 420px);
+  object-fit: contain;
+}

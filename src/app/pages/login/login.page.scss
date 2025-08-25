@@ -1,0 +1,152 @@
+/* Theme tokens */
+:host {
+  --burgundy: #7a1222;
+  --pink: #ffd6e7;
+  --sage-0: #e6ede1;
+  --sage-1: #d8e3d0;
+  --sage-2: #c8d6bf;
+  --sage-3: #b9ccb3;
+}
+
+/* Page background (sage gradient) */
+ion-content.login-content {
+  --background: transparent;
+  position: relative;
+}
+.sage-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    var(--sage-0) 0%,
+    var(--sage-1) 35%,
+    var(--sage-2) 65%,
+    var(--sage-3) 100%
+  );
+}
+
+/* Center the card */
+.center-wrap {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* WHITE card */
+.card {
+  width: min(560px, calc(100% - 48px));
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 22px 18px 26px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  color: var(--burgundy);
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  .appLogo {
+    width: 140px;
+    height: auto;
+  }
+}
+
+/* Form */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* Fields */
+.field {
+  --background: #ffffff;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  --border-radius: 16px;
+  margin: 6px 6px 2px;
+
+  ion-label {
+    color: var(--burgundy);
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+
+  ion-input {
+    color: #2a1c22;
+    --placeholder-color: #9aa0a6;   /* make placeholder visible */
+    --placeholder-opacity: 1;
+  }
+
+  /* ensure the shadow DOM background is white */
+  &::part(native) { background: #ffffff; border-radius: 16px; }
+}
+
+/* PINK login button with burgundy text */
+.login-button {
+  margin-top: 10px;
+  height: 48px;
+  --background: var(--pink);
+  --background-activated: #ffcfe1;
+  --background-focused: #ffcfe1;
+  --border-radius: 999px;
+  --box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+
+  color: var(--burgundy) !important;
+  --color: var(--burgundy);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-transform: none;
+}
+
+/* Error alignment */
+.error {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Social login */
+.social-login {
+  text-align: center;
+
+  .divider {
+    margin: 18px 0 10px;
+    font-size: 0.95rem;
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .social-button { font-weight: 700; }
+  .google   { --color: #DB4437; }
+  .facebook { --color: #4267B2; }
+  .apple    { --color: #000000; }
+}
+
+/* Create account (centered burgundy link) */
+.create-wrap {
+  display: grid;
+  place-items: center;
+  margin-top: 6px;
+}
+.create-account {
+  --color: var(--burgundy);
+  color: var(--burgundy);
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
